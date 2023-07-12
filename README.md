@@ -18,10 +18,6 @@
     <td>refresh</td>
   </tr>
   <tr>
-    <td>POST /me</td>
-    <td>me</td>
-  </tr>
-  <tr>
     <td>GET /email-verification/{token}</td>
     <td>confirmEmail</td>
   </tr>
