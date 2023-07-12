@@ -1,71 +1,119 @@
-# Getting Started with Create React App
+![Alt Text](sunking.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# INSTRUCTION
 
-## Available Scripts
+### The project is divided into backend and frontend
+#### - Clone the Repo to your localhost
+#### - Make sure your systems runs PHP 8 and above
 
-In the project directory, you can run:
+### BACKEND SPECIFIC INSTRUCTION
+#### *Please follow the instructions below to run backend:*
+#### - Start your localserver e.g xampp, wamp etc then navigate to <span style="color: red">PHPMyAdmin</span> to create a database (blog_db)
+#### - create a database using the database details in <span style="color: red">.env file</span>
+#### - Navigate to backend folder using <span style="color: red">cd backend</span> in your ide terminal .eg PHPStom
+#### - Start the backend in development mode by running <span style="color: red">symfony serve -d</span> (This assumes you have installed symfony client)
+#### - Access the Api swagger ui via  http://127.0.0.1:8000/api (This assumes your port runs on 8000)
+#### -Run doctrine migrate command to migrate database tables
+#### - Test all the endpoints via swagger UI by following the instruction for each endpoint
 
-### `npm start`
+### FRONTEND SPECIFIC INSTRUCTION
+#### - Navigate to frontend folder using <span style="color: red">cd frontend</span>
+#### - Run <span style="color: red">npm install</span> to install node packages
+#### - Run <span style="color: red">npm start</span> to start the React App
+#### - Navigate to <span style="color: red">localhost/3000</span> (Assuming your React port starts on 3000)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### To ensure Frontend connects with Backend correctly , kindly ensure the localhost address assigned to backend server is similar to the baseUrl which is located at src/assets/includes/Config.js in your frontend folder
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## The following operations can be carried out based on authorization as showing below
 
-### `npm test`
+Certainly! Here's the HTML code to display the table:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<table>
+  <tr>
+    <th>Endpoint</th>
+    <th>Method</th>
+  </tr>
+  <tr>
+    <td>POST /login</td>
+    <td>login</td>
+  </tr>
+  <tr>
+    <td>POST /logout</td>
+    <td>logout</td>
+  </tr>
+  <tr>
+    <td>POST /refresh</td>
+    <td>refresh</td>
+  </tr>
+  <tr>
+    <td>POST /me</td>
+    <td>me</td>
+  </tr>
+  <tr>
+    <td>GET /email-verification/{token}</td>
+    <td>confirmEmail</td>
+  </tr>
+  <tr>
+    <td>POST /staff</td>
+    <td>registerStaff</td>
+  </tr>
+  <tr>
+    <td>PUT /staff/{id}</td>
+    <td>updateStaff</td>
+  </tr>
+  <tr>
+    <td>GET /staff</td>
+    <td>getAllStaff</td>
+  </tr>
+  <tr>
+    <td>GET /staff/{id}</td>
+    <td>getStaffById</td>
+  </tr>
+  <tr>
+    <td>POST /customer</td>
+    <td>registerCustomer</td>
+  </tr>
+  <tr>
+    <td>PUT /customer/{id}</td>
+    <td>updateCustomer</td>
+  </tr>
+  <tr>
+    <td>POST /task</td>
+    <td>addNewTask</td>
+  </tr>
+  <tr>
+    <td>PUT /task</td>
+    <td>updateTask</td>
+  </tr>
+  <tr>
+    <td>POST /visit</td>
+    <td>addVisitingRecord</td>
+  </tr>
+  <tr>
+    <td>PUT /visit</td>
+    <td>updateVisitingRecord</td>
+  </tr>
+  <tr>
+    <td>GET /task/{memberId}</td>
+    <td>getTaskByMemberId</td>
+  </tr>
+  <tr>
+    <td>GET /task/approval/{taskId}/{staffId}</td>
+    <td>approveTask</td>
+  </tr>
+  <tr>
+    <td>GET /task</td>
+    <td>getAllTasks</td>
+  </tr>
+  <tr>
+    <td>GET /task-performance/{filter}</td>
+    <td>getTaskPerformanceByFilter</td>
+  </tr>
+  <tr>
+    <td>GET /report/{column}/{order}</td>
+    <td>generateReport</td>
+  </tr>
+</table>
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# sunking_app_frontend
+You can use this HTML code to display the table on a webpage.
