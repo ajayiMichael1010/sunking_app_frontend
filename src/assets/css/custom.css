@@ -1,0 +1,17 @@
+.adminOnly, .editorOnly,.hideAuthLinks {
+    display: block;
+}
+
+.custom-card{
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.hideActionButtonEditDelete, .hideElement {
+    display: none;
+}
+
+.showElement{
+    display: inline-block;
+}
