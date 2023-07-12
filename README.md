@@ -114,6 +114,3 @@ Certainly! Here's the HTML code to display the table:
     <td>generateReport</td>
   </tr>
 </table>
-```
-
-You can use this HTML code to display the table on a webpage.
