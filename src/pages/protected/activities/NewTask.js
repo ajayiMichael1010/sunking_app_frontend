@@ -6,6 +6,7 @@ import {taskData} from "../../../Utilities/TaskData";
 import staffData from "../../../Utilities/StaffData";
 import {showFailureResponseMessage, showSuccessResponseMessage} from "../../../Utilities/StateResponseMessageUtil";
 import {MyContext} from "../../../statemanagement/ComponentState";
+import {appLogo} from "../../../assets/ImageLinks";
 
 
 export default function NewTask() {
@@ -35,33 +36,35 @@ export default function NewTask() {
         setIsLoading(true);
         addNewTask();
     };
-
-    function removeEmptyAttributes(obj) {
-        Object.keys(obj).forEach((key) => {
-            if (obj[key] === "") {
-                delete obj[key];
-            }
-        });
-        return obj;
-    }
+    //
+    // function removeEmptyAttributes(obj) {
+    //     Object.keys(obj).forEach((key) => {
+    //         if (obj[key] === "") {
+    //             delete obj[key];
+    //         }
+    //     });
+    //     return obj;
+    // }
 
     const addNewTask = () => {
 
         // REMOVE KEYS WITH EMPTY VALUES
-        const modifiedData = removeEmptyAttributes(data);
+        //const modifiedData = removeEmptyAttributes(data);
 
-        const formData = new FormData();
-        Object.entries(modifiedData).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
+        // const formData = new FormData();
+        // Object.entries(modifiedData).forEach(([key, value]) => {
+        //     formData.append(key, value);
+        // });
 
         const headers = {
             'Content-Type': 'multipart/form-data',
             'Access-Control-Allow-Origin' :true,
         };
 
+        console.log(data);
+
         axios
-            .post(`${baseUrl}/api/task`, formData)
+            .post(`${baseUrl}/api/task`, data)
             .then((res) => {
                 console.log(res);
                 setIsLoading(false);
@@ -81,7 +84,7 @@ export default function NewTask() {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src={appLogo}
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

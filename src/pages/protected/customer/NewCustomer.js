@@ -6,6 +6,7 @@ import axios from "axios";
 import {customerData} from "../../../Utilities/CustomerData";
 import {MyContext} from "../../../statemanagement/ComponentState";
 import {showFailureResponseMessage, showSuccessResponseMessage} from "../../../Utilities/StateResponseMessageUtil";
+import {appLogo} from "../../../assets/ImageLinks";
 
 export default function NewCustomer() {
 
@@ -83,7 +84,7 @@ export default function NewCustomer() {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src={appLogo}
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

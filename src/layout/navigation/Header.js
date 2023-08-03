@@ -13,6 +13,7 @@ function classNames(...classes) {
 export default function Header() {
     const {
         isTopNavLogo , setIsTopNavbarLogo,
+        isSidebar, setIsSidebar,
     } = useContext(MyContext);
 
     const savedToken = localStorage.getItem("userToken")
@@ -32,19 +33,17 @@ export default function Header() {
     //const navigate = useNavigate();
 
 
-
-
-
-
-
     const handleLogout = () => {
         localStorage.removeItem("userProfile");
         localStorage.removeItem("userToken");
         //setToken(null);
         window.location.href="../login";
-
-        setIsTopNavbarLogo(true)
+        setIsTopNavbarLogo(true);
     }
+        const toggleSidebar = () => {
+            setIsSidebar(!isSidebar);
+        }
+
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -55,7 +54,11 @@ export default function Header() {
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center
+                                justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700
+                                 hover:text-white focus:outline-none focus:ring-2
+                                 focus:ring-inset focus:ring-white front-layer" onClick={toggleSidebar}
+                                >
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -67,16 +70,16 @@ export default function Header() {
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
-                                        className="block h-8 w-auto lg:hidden"
+                                        className="block h-8 w-auto lg:hidden logo-background"
                                         src={appLogo}
                                         alt="Your Company"
                                     />
                                     {isTopNavLogo &&
                                         <img
-                                            className="hidden h-8 w-auto lg:block"
+                                            className="hidden h-8 w-auto lg:block logo-background"
                                             src={appLogo}
                                             alt="Your Company"
-                                            style={{backgroundColor:"yellow",padding:"2px"}}
+
                                         />
                                     }
 

@@ -11,6 +11,7 @@ const MyContextProvider = ({ children }) => {
     const [failureMessage, setFailureMessage] = useState(null);
 
     const [isTopNavLogo , setIsTopNavbarLogo] = useState(true);
+    const [isSidebar, setIsSidebar] = useState(false)
 
     return (
         <MyContext.Provider value={{
@@ -21,7 +22,8 @@ const MyContextProvider = ({ children }) => {
             isFailureMessageBox, setIsFailureMessageBox,
             failureMessage, setFailureMessage,
             isTopNavLogo , setIsTopNavbarLogo,
-            token , setToken
+            token , setToken,
+            isSidebar, setIsSidebar
 
         }}>
             {children}

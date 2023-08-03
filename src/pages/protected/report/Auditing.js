@@ -1,26 +1,44 @@
 import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {baseUrl} from "../../../assets/includes/Config";
-import {MyContext} from "../../../statemanagement/ComponentState";
 
 export default  function AuditingReport() {
     const [report, setReport] = useState(null);
 
     const [sortableColumn , setSortableColumn] = useState("customer_rating");
-    const [orderBy, setOrdeyBy] = useState("DESC");
+    const [orderBy, setOrderBy] = useState("DESC");
+    const [areaBg, setAreaBg] = useState(null);
+    const [numberOfRepaymentBg, setNumberOfRepaymentBg] = useState(null);
+    const [customerRating, setCustomerRating] = useState(null);
 
     function handleChangeColumnFilter(e){
         setSortableColumn(e.target.value)
     }
 
     function handleChangeSortFilter(e){
-        setOrdeyBy(e.target.value)
+        setOrderBy(e.target.value)
     }
     const getReports = () => {
         axios.get(`${baseUrl}/api/report/${sortableColumn}/${orderBy}`)
             .then(res => {
                 console.log(res.data)
                 setReport(res.data);
+
+                if(sortableColumn === "customer_rating"){
+                    setCustomerRating("bg-yellow-300")
+                    setAreaBg(null);
+                    setNumberOfRepaymentBg(null);
+                }
+                else if(sortableColumn === "number_of_repayment_received") {
+                    setNumberOfRepaymentBg("bg-yellow-300")
+                    setAreaBg(null);
+                    setCustomerRating(null);
+                }
+                else{
+                    setAreaBg("bg-yellow-300")
+                    setNumberOfRepaymentBg(null);
+                    setCustomerRating(null);
+                }
             })
             .catch(err => console.log(err))
     }
@@ -41,7 +59,6 @@ export default  function AuditingReport() {
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         onChange={handleChangeColumnFilter}
                     >
-                        <option value="visit_date">Date</option>
                         <option value="customer_rating">Customer Rating</option>
                         <option value="number_of_repayment_received">Number Of Repayments</option>
                         <option value="area">Area</option>
@@ -95,12 +112,12 @@ export default  function AuditingReport() {
                                         <td className="whitespace-nowrap px-6 py-4 font-medium">{index+1}</td>
                                         <td className="whitespace-nowrap px-6 py-4">{rep.staff.full_name}</td>
                                         <td className="whitespace-nowrap px-6 py-4">{rep.task.task_title}</td>
-                                        <td className="whitespace-nowrap px-6 py-4">{rep.task.number_of_target_repayment} repayments</td>
+                                        <td className={`whitespace-nowrap px-6 py-4 ${numberOfRepaymentBg}`}>{rep.task.number_of_target_repayment} repayments</td>
                                         <td className="whitespace-nowrap px-6 py-4">{rep.numberOfRepaymentReceived} repayments</td>
                                         <td className="whitespace-nowrap px-6 py-4">{rep.customer.full_name}</td>
-                                        <td className="whitespace-nowrap px-6 py-4">{rep.area}</td>
-                                        <td className="whitespace-nowrap px-6 py-4">{rep.customer_rating}</td>
-                                        <td className="whitespace-nowrap px-6 py-4">{rep.customer_feedback}</td>
+                                        <td className={`whitespace-nowrap px-6 py-4 ${areaBg}`}>{rep.area}</td>
+                                        <td className={`whitespace-nowrap px-6 py-4 ${customerRating}`}>{rep.customerRating}</td>
+                                        <td className="whitespace-nowrap px-6 py-4">{rep.customerFeedback}</td>
                                         <td className="whitespace-nowrap px-6 py-4">{rep.staffObservationDuringVisit}</td>
                                         <td className="whitespace-nowrap px-6 py-4"><img src={rep.visit_picture}/></td>
 
@@ -115,7 +132,5 @@ export default  function AuditingReport() {
                 </div>
             </div>
         </>
-
-
     );
 }

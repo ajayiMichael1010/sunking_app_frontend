@@ -6,7 +6,7 @@ import Spinner from "../../../assets/includes/Spinner";
 import axios from "axios";
 import {baseUrl} from "../../../assets/includes/Config";
 import {showFailureResponseMessage, showSuccessResponseMessage} from "../../../Utilities/StateResponseMessageUtil";
-
+import {userData} from "../../../Utilities/UserDetails";
 export default function TaskApprovalModal(currenTask) {
 
     const {
@@ -151,16 +151,19 @@ export default function TaskApprovalModal(currenTask) {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="relative">
-                                            <button
-                                                type="submit"
-                                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                            >
-                                                {currenTask.currenTask.isApproved && <span>Disapprove Task</span>}
-                                                {!currenTask.currenTask.isApproved && <span>Approve Task</span>}
-                                            </button>
-                                            {isLoading && <Spinner/>}
-                                        </div>
+                                        {userData.managerialRole === "LINE MANAGER" &&
+                                            <div className="relative">
+                                                <button
+                                                    type="submit"
+                                                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                >
+                                                    {currenTask.currenTask.isApproved && <span>Disapprove Task</span>}
+                                                    {!currenTask.currenTask.isApproved && <span>Approve Task</span>}
+                                                </button>
+                                                {isLoading && <Spinner/>}
+                                            </div>
+                                        }
+
                                     </form>
                                 </div>
                             </div>

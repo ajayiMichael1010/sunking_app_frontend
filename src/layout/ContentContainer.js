@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "./navigation/Header";
 import Footer from "./Footer";
 import { Link, Outlet } from "react-router-dom";
@@ -17,8 +17,17 @@ function ContentContainer() {
         successMessage, setSuccessMessage,
         isFailureMessageBox, setIsFailureMessageBox,
         failureMessage, setFailureMessage,
-        isTopNavLogo , setIsTopNavbarLogo
+        isTopNavLogo , setIsTopNavbarLogo,
+        isSidebar, setIsSidebar,
     } = useContext(MyContext);
+
+    const screenWidth = window.innerWidth
+    useEffect(() => {
+        if(screenWidth >= 768){
+            setIsSidebar(true);
+        }
+
+    },[])
 
 
     //SIDEBAR AND TOPNAVBAR DYNAMIC LAYOUT LOGIC
@@ -29,7 +38,7 @@ function ContentContainer() {
         contentFloat :"",
     }
 
-    if(userData !=false) {
+    if(userData !=false && isSidebar) {
         topNavLayoutDiv = "col-span-10";
         topNavLayoutParentDiv = "grid md:grid-cols-12";
         contentProperties = {contentWidth: "80%", contentFloat: "right",}
@@ -43,7 +52,7 @@ function ContentContainer() {
     return (
         <div>
             <div className={`${topNavLayoutParentDiv}`}>
-                {userData  && <div className="col-span-2"><Sidebar />  </div>}
+                {userData && isSidebar && <div className="col-span-2"><Sidebar />  </div>}
                 <div className={`relative ${topNavLayoutDiv}`}>
                     <Header />
 

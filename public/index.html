@@ -15,6 +15,23 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <style>
+      .front-layer{
+        z-index: 9999999;
+      }
+      @media(min-width: 768px){
+        #sidenav{
+          display:block;
+        }
+      }
+
+      .logo-background {
+        background-color:yellow;
+        padding:2px;
+        border-radius: 2px;
+      }
+    </style>
    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
